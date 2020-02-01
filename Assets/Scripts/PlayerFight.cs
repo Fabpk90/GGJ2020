@@ -167,7 +167,6 @@ public class PlayerFight : MonoBehaviour
 
         public void Jump()
         {
-                print("jump !");
                 if (canJump)
                 {
                         //is it the right one ?
