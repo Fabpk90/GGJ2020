@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
 
     private void InputManagerOnonPlayerJoined(PlayerInput obj)
     {
-        print("ga");
         if (playerIndex == 0)
         {
             player1 = obj.GetComponent<PlayerManager>();

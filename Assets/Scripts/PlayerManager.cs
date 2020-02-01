@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
     public Vector2Int maxIndexUI;
     public Vector2Int minIndexUI;
 
-    public Item itemInHand;
+    public UISelector itemInHand;
 
     public Robot robot;
 
@@ -52,8 +52,12 @@ public class PlayerManager : MonoBehaviour
             {
                 selectedX = 0;
                 selectedY = 0;
+
+                wallet.DeSelect();
                 
                 input.SwitchCurrentActionMap("SelectionPart");
+                
+                SearchSelectedItem();
             }
         }
         else if (dir.x < 0)
@@ -62,16 +66,19 @@ public class PlayerManager : MonoBehaviour
             {
                 selectedX = 0;
                 selectedY = 0;
+                wallet.DeSelect();
                 
                 input.SwitchCurrentActionMap("SelectionPart");
+                
+                SearchSelectedItem();
             }
         }
         
-        if (dir.y > 0)
+        if (dir.y < 0)
         {
             wallet.GoUp();
         }
-        else if (dir.y < 0)
+        else if (dir.y > 0)
         {
             wallet.GoDown();
         }
@@ -85,9 +92,13 @@ public class PlayerManager : MonoBehaviour
 
         if (itemInHand != null)
         {
-            print("yes");
-            cooldownPick = itemInHand.secondsToPull + Time.time;
-            wallet.AddToWallet(itemInHand);
+            cooldownPick = itemInHand.item.secondsToPull + Time.time;
+            wallet.AddToWallet(itemInHand.item);
+
+            selectedX = 0;
+            selectedY = 0;
+            
+            SearchSelectedItem();
         }
 
     }
@@ -155,7 +166,7 @@ public class PlayerManager : MonoBehaviour
 
     private void SearchSelectedItem()
     {
-        var searchItem = FindObjectAt(selectedX, selectedY).GetComponent<Item>();
+        var searchItem = FindObjectAt(selectedX, selectedY);
 
         if (itemInHand != null)
         {

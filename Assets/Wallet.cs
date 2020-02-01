@@ -35,8 +35,8 @@ public class Wallet : MonoBehaviour
 
     public void UpdateSelection()
     {
-        transform.GetChild(previouslySelected).GetComponent<SpriteRenderer>().color = Color.white;
-        transform.GetChild(indexSelected).GetComponent<SpriteRenderer>().color = Color.green;
+        transform.GetChild(previouslySelected).GetComponent<Image>().color = Color.white;
+        transform.GetChild(indexSelected).GetComponent<Image>().color = Color.green;
     }
     
     public void AddToWallet(Item toAdd)
@@ -55,6 +55,7 @@ public class Wallet : MonoBehaviour
         {
             if (transform.GetChild(i).GetComponent<Item>() == toRemove)
             {
+                print("found");
                 toRemove.gameObject.SetActive(true);
                 items.Remove(toRemove);
                 Destroy(transform.GetChild(i).gameObject);
@@ -65,6 +66,12 @@ public class Wallet : MonoBehaviour
 
     public void RemoveElement()
     {
+        print("removing");
         RemoveElement(items[indexSelected]);
+    }
+
+    public void DeSelect()
+    {
+        transform.GetChild(indexSelected).GetComponent<Image>().color = Color.white;
     }
 }

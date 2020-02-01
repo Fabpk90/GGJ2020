@@ -80,8 +80,8 @@ MonoBehaviour:
   selectObjects: []
   selectedX: 0
   selectedY: 0
-  maxIndexUI: {x: 2, y: 1}
-  minIndexUI: {x: -2, y: -1}
+  maxIndexUI: {x: 1, y: 1}
+  minIndexUI: {x: -1, y: -1}
   itemInHand: {fileID: 0}
   robot: {fileID: 0}
   cooldownPick: 0
