@@ -1,10 +1,27 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public abstract class Weapon : Item
 {
         public float useCooldown;
-        public abstract void Use();
-        
+        protected float cooldown;
+
+        public abstract void UseWeapon();
+
+        private void Update()
+        { 
+                cooldown += Time.deltaTime;
+        }
+
+        public void Use()
+        {
+                if (cooldown >= useCooldown)
+                {
+                        cooldown = 0;
+                        UseWeapon();
+                }
+        }
+
         public override void TakeDamage(ref float amount)
         {
         }
@@ -13,12 +30,12 @@ public abstract class Weapon : Item
         {
         }
         
-        public override void Equip(ref Robot robot)
+        public override void Equip(ref PlayerFight robot)
         {
                 
         }
 
-        public override void UnEquip(ref Robot robot)
+        public override void UnEquip(ref PlayerFight robot)
         {
                
         }

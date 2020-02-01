@@ -10,7 +10,8 @@ public class PlayerFight : MonoBehaviour
         public float health;
         public float maxHealth;
 
-        public Robot robot;
+        public GameObject robot;
+        public GameObject projectileSpawnPoint;
 
         public Weapon weapon1;
         public Weapon weapon2;
@@ -19,26 +20,42 @@ public class PlayerFight : MonoBehaviour
 
         public List<Item> items;
 
-        private Rigidbody2D rigidbody2D;
+        private new Rigidbody2D rigidbody2D;
+
+        private float movement;
+
+        private void Update()
+        {
+                rigidbody2D.velocity = new Vector3(1, 0) * movement;
+        }
 
         private void Awake()
         {
-                rigidbody2D = GetComponent<Rigidbody2D>();
+                rigidbody2D = robot.GetComponent<Rigidbody2D>();
         }
 
         public void Move(Vector2 val)
         {
-                rigidbody2D.AddForce(val);
+                if (val.x > 0)
+                        movement = 1;
+                else if (val.x < 0)
+                        movement = -1;
+                else
+                {
+                        movement = 0;
+                }
         }
 
         public void UseWeapon1()
         {
-                throw new NotImplementedException();
+                if(weapon1 != null)
+                        weapon1.Use();
         }
 
         public void UseWeapon2()
         {
-                throw new NotImplementedException();
+                if (weapon2 != null) 
+                        weapon2.Use();
         }
 
         private void OnCollisionEnter2D(Collision2D other)

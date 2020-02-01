@@ -46,6 +46,7 @@ public class PlayerManager : MonoBehaviour
         input.currentActionMap["Weapon1"].started += OnWeapon1Used;
         input.currentActionMap["Weapon2"].started += OnWeapon2Used;
         input.currentActionMap["Direction"].started += OnDirectionFight;
+        input.currentActionMap["Direction"].canceled += OnDirectionFight;
     }
 
     private void OnDirectionFight(InputAction.CallbackContext obj)

@@ -1,21 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TestWeapon : Weapon
 {
-    public override void Equip(ref Robot robot)
+    public GameObject bulletPrefab;
+    public float bulletSpeed;
+    public override void Equip(ref PlayerFight robot)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void UnEquip(ref Robot robot)
+    public override void UnEquip(ref PlayerFight robot)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void Use()
+    public override void UseWeapon()
     {
-        throw new System.NotImplementedException();
+        Instantiate(bulletPrefab, transform.forward + transform.position, Quaternion.identity)
+            .GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 0) * transform.forward * bulletSpeed);
     }
 }

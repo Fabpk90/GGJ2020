@@ -30,8 +30,8 @@ public class GameManager : MonoBehaviour
     public Wallet wallet1;
     public Wallet wallet2;
 
-    public Robot robotPlayer1;
-    public Robot robotPlayer2;
+    public GameObject robotPlayer1;
+    public GameObject robotPlayer2;
     private static readonly int FightPhase = Animator.StringToHash("FightPhase");
 
     // Start is called before the first frame update

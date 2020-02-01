@@ -14,12 +14,12 @@ public abstract class Armor : Item
                 
         }
         
-        public override void Equip(ref Robot robot)
+        public override void Equip(ref PlayerFight robot)
         {
         
         }
 
-        public override void UnEquip(ref Robot robot)
+        public override void UnEquip(ref PlayerFight robot)
         {
         
         }

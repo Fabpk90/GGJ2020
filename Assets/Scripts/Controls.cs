@@ -216,7 +216,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Direction"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""173b96a9-09e8-48b8-98c1-a8cd68c39cc8"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -247,9 +247,9 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""LeftStick"",
-                    ""id"": ""97dbfd58-1e81-43cd-8150-6047ff5f6a10"",
-                    ""path"": ""1DAxis"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""1f025863-3aef-404d-971d-f5acc9ac9e93"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -258,8 +258,30 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""35907079-419c-4299-b3ff-ba816e28d9a6"",
+                    ""name"": ""up"",
+                    ""id"": ""c6826e53-2074-4d81-a281-52d826526d25"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Direction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""0d2b2f6f-9c37-4659-b7af-ff20aa8e9c03"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Direction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""b819752a-af20-41b9-849f-01bef9c92b2c"",
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -269,8 +291,8 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""9da65221-83ff-43f6-a663-ac731d89326d"",
+                    ""name"": ""right"",
+                    ""id"": ""38c460de-2cf9-4dbd-befb-ed1cdc3217a9"",
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",

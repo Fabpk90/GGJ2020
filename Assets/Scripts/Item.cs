@@ -13,6 +13,6 @@ public abstract class Item : MonoBehaviour
     public abstract void TakeDamage(ref float amount);
     public abstract void DealDamage(ref float amount);
 
-    public abstract void Equip(ref Robot robot);
-    public abstract void UnEquip(ref Robot robot);
+    public abstract void Equip(ref PlayerFight robot);
+    public abstract void UnEquip(ref PlayerFight robot);
 }
