@@ -63,7 +63,6 @@ public class PlayerFight : MonoBehaviour
 
         public void TakeDamage(float amount)
         {
-                print(amount);
                 health -= amount;
 
                 if (health < 0)
@@ -93,6 +92,8 @@ public class PlayerFight : MonoBehaviour
                         }
                         TakeDamage(damage);
                         print("collision");
+                        
+                        Destroy(p.gameObject);
                 }
         }
 
@@ -112,6 +113,7 @@ public class PlayerFight : MonoBehaviour
                         TakeDamage(damage);
                         
                         print("trigger");
+                        Destroy(p.gameObject);
                 }
         }
 

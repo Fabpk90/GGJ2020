@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -41,6 +42,8 @@ public class GameManager : MonoBehaviour
     public Slider healthPlayer2;
 
     public GameObject playerDead;
+
+    public bool endGame = false;
     
     private static readonly int FightPhase = Animator.StringToHash("FightPhase");
 
@@ -100,6 +103,14 @@ public class GameManager : MonoBehaviour
             }
                 
         }
+
+        if (endGame)
+        {
+            if (Gamepad.current.aButton.isPressed)
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
     }
 
     public void StartTimerForSelection()
@@ -112,5 +123,6 @@ public class GameManager : MonoBehaviour
     {
         playerDead.SetActive(true);
         playerDead.GetComponent<TextMeshProUGUI>().text = "Player " + (player + 1) + " is dead";
+        endGame = true;
     }
 }
