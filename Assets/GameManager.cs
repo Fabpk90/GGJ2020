@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     public Slider healthPlayer1;
     public Slider healthPlayer2;
+
+    public GameObject playerDead;
     
     private static readonly int FightPhase = Animator.StringToHash("FightPhase");
 
@@ -108,13 +110,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDie(int player)
     {
-        if (player == 1)
-        {
-            print("The player 1 dies");
-        }
-        else
-        {
-            print("The player 2 dies");
-        }
+        playerDead.SetActive(true);
+        playerDead.GetComponent<TextMeshProUGUI>().text = "Player " + (player + 1) + " is dead";
     }
 }

@@ -9,11 +9,11 @@ public class Robot : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        player.collision(other);
+        player.Collision(other);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        player.trigger(other);
+        player.Trigger(other);
     }
 }

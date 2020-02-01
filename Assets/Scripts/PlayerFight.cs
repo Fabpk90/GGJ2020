@@ -79,7 +79,7 @@ public class PlayerFight : MonoBehaviour
                 GameManager.Instance.PlayerDie(playerIndex);
         }
 
-        public void collision(Collision2D other)
+        public void Collision(Collision2D other)
         {
                 Attack p = other.gameObject.GetComponent<Attack>();
 
@@ -96,7 +96,7 @@ public class PlayerFight : MonoBehaviour
                 }
         }
 
-        public void trigger(Collider2D other)
+        public void Trigger(Collider2D other)
         {
                 Attack p = other.gameObject.GetComponent<Attack>();
 
