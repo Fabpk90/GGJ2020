@@ -186,9 +186,25 @@
             "id": "3e5d5dd9-7613-4fe2-b3da-f3cc6a150661",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Weapon1",
                     "type": "Button",
                     "id": "3f9cf016-eaa3-46fd-b821-f04b6863d346",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Weapon2",
+                    "type": "Button",
+                    "id": "ebc5a7fe-6f1f-4931-abef-90fd461728de",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Direction",
+                    "type": "Button",
+                    "id": "173b96a9-09e8-48b8-98c1-a8cd68c39cc8",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -198,44 +214,55 @@
                 {
                     "name": "",
                     "id": "166e3cf9-aa48-4e70-bd5a-4d30ffbabd5e",
-                    "path": "",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Weapon1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "1D Axis",
-                    "id": "bee3a4ec-4e53-49e9-aa94-eafda6980cc9",
+                    "name": "",
+                    "id": "4526b3ee-02fc-445d-ad97-a03dda6a9658",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weapon2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "LeftStick",
+                    "id": "97dbfd58-1e81-43cd-8150-6047ff5f6a10",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Direction",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "negative",
-                    "id": "03e567f3-7be6-4901-a0af-d78c8ceb3b67",
-                    "path": "",
+                    "id": "35907079-419c-4299-b3ff-ba816e28d9a6",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Direction",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "positive",
-                    "id": "81043c70-f21c-46d5-8a7b-fa97fda696f7",
-                    "path": "",
+                    "id": "9da65221-83ff-43f6-a663-ac731d89326d",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Direction",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

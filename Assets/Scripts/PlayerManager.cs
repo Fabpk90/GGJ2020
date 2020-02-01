@@ -17,14 +17,17 @@ public class PlayerManager : MonoBehaviour
 
     public UISelector itemInHand;
 
-    public Robot robot;
-
     public float cooldownPick;
     public Wallet wallet;
+
+
+    public PlayerFight playerFight;
     
     // Start is called before the first frame update
     void Start()
     {
+        playerFight = GetComponent<PlayerFight>();
+        
         input = GetComponent<PlayerInput>();
         input.SwitchCurrentActionMap("SelectionPart");
         
@@ -37,6 +40,27 @@ public class PlayerManager : MonoBehaviour
         input.currentActionMap["Selection"].started += OnSelectionWallet;
 
         wallet.player = this;
+        
+        input.SwitchCurrentActionMap("Fight");
+        
+        input.currentActionMap["Weapon1"].started += OnWeapon1Used;
+        input.currentActionMap["Weapon2"].started += OnWeapon2Used;
+        input.currentActionMap["Direction"].started += OnDirectionFight;
+    }
+
+    private void OnDirectionFight(InputAction.CallbackContext obj)
+    {
+        playerFight.Move(obj.ReadValue<Vector2>());
+    }
+
+    private void OnWeapon2Used(InputAction.CallbackContext obj)
+    {
+        playerFight.UseWeapon1();
+    }
+
+    private void OnWeapon1Used(InputAction.CallbackContext obj)
+    {
+        playerFight.UseWeapon2();
     }
 
     private void OnSelectionWallet(InputAction.CallbackContext obj)
@@ -92,7 +116,8 @@ public class PlayerManager : MonoBehaviour
             || cooldownPick > Time.time)
             return;
 
-        if (itemInHand != null && itemInHand.item.gameObject.activeSelf)
+        if (itemInHand != null && itemInHand.item.gameObject.activeSelf
+            && !(selectedX == 0 && selectedY == 0))
         {
             cooldownPick = itemInHand.item.secondsToPull + Time.time;
             wallet.AddToWallet(itemInHand.item);

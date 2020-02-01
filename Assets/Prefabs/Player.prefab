@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5581725981504694593}
   - component: {fileID: 5581725981504694592}
   - component: {fileID: 5581725981504694599}
+  - component: {fileID: -4788292923097998675}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -83,6 +84,22 @@ MonoBehaviour:
   maxIndexUI: {x: 1, y: 1}
   minIndexUI: {x: -1, y: -1}
   itemInHand: {fileID: 0}
-  robot: {fileID: 0}
   cooldownPick: 0
   wallet: {fileID: 0}
+  playerSprite: {fileID: 0}
+--- !u!114 &-4788292923097998675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5581725981504694598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3a841f09f5448bbc466a8e68705ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  health: 100
+  maxHealth: 100
+  robot: {fileID: 0}

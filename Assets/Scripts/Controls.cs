@@ -199,9 +199,25 @@ public class @Controls : IInputActionCollection, IDisposable
             ""id"": ""3e5d5dd9-7613-4fe2-b3da-f3cc6a150661"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Weapon1"",
                     ""type"": ""Button"",
                     ""id"": ""3f9cf016-eaa3-46fd-b821-f04b6863d346"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Weapon2"",
+                    ""type"": ""Button"",
+                    ""id"": ""ebc5a7fe-6f1f-4931-abef-90fd461728de"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Direction"",
+                    ""type"": ""Button"",
+                    ""id"": ""173b96a9-09e8-48b8-98c1-a8cd68c39cc8"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -211,44 +227,55 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""166e3cf9-aa48-4e70-bd5a-4d30ffbabd5e"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Weapon1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""bee3a4ec-4e53-49e9-aa94-eafda6980cc9"",
+                    ""name"": """",
+                    ""id"": ""4526b3ee-02fc-445d-ad97-a03dda6a9658"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Weapon2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""LeftStick"",
+                    ""id"": ""97dbfd58-1e81-43cd-8150-6047ff5f6a10"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Direction"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""03e567f3-7be6-4901-a0af-d78c8ceb3b67"",
-                    ""path"": """",
+                    ""id"": ""35907079-419c-4299-b3ff-ba816e28d9a6"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Direction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""81043c70-f21c-46d5-8a7b-fa97fda696f7"",
-                    ""path"": """",
+                    ""id"": ""9da65221-83ff-43f6-a663-ac731d89326d"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Direction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -267,7 +294,9 @@ public class @Controls : IInputActionCollection, IDisposable
         m_SelectionWallet_Selection = m_SelectionWallet.FindAction("Selection", throwIfNotFound: true);
         // Fight
         m_Fight = asset.FindActionMap("Fight", throwIfNotFound: true);
-        m_Fight_Newaction = m_Fight.FindAction("New action", throwIfNotFound: true);
+        m_Fight_Weapon1 = m_Fight.FindAction("Weapon1", throwIfNotFound: true);
+        m_Fight_Weapon2 = m_Fight.FindAction("Weapon2", throwIfNotFound: true);
+        m_Fight_Direction = m_Fight.FindAction("Direction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -399,12 +428,16 @@ public class @Controls : IInputActionCollection, IDisposable
     // Fight
     private readonly InputActionMap m_Fight;
     private IFightActions m_FightActionsCallbackInterface;
-    private readonly InputAction m_Fight_Newaction;
+    private readonly InputAction m_Fight_Weapon1;
+    private readonly InputAction m_Fight_Weapon2;
+    private readonly InputAction m_Fight_Direction;
     public struct FightActions
     {
         private @Controls m_Wrapper;
         public FightActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Fight_Newaction;
+        public InputAction @Weapon1 => m_Wrapper.m_Fight_Weapon1;
+        public InputAction @Weapon2 => m_Wrapper.m_Fight_Weapon2;
+        public InputAction @Direction => m_Wrapper.m_Fight_Direction;
         public InputActionMap Get() { return m_Wrapper.m_Fight; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -414,16 +447,28 @@ public class @Controls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_FightActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_FightActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_FightActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_FightActionsCallbackInterface.OnNewaction;
+                @Weapon1.started -= m_Wrapper.m_FightActionsCallbackInterface.OnWeapon1;
+                @Weapon1.performed -= m_Wrapper.m_FightActionsCallbackInterface.OnWeapon1;
+                @Weapon1.canceled -= m_Wrapper.m_FightActionsCallbackInterface.OnWeapon1;
+                @Weapon2.started -= m_Wrapper.m_FightActionsCallbackInterface.OnWeapon2;
+                @Weapon2.performed -= m_Wrapper.m_FightActionsCallbackInterface.OnWeapon2;
+                @Weapon2.canceled -= m_Wrapper.m_FightActionsCallbackInterface.OnWeapon2;
+                @Direction.started -= m_Wrapper.m_FightActionsCallbackInterface.OnDirection;
+                @Direction.performed -= m_Wrapper.m_FightActionsCallbackInterface.OnDirection;
+                @Direction.canceled -= m_Wrapper.m_FightActionsCallbackInterface.OnDirection;
             }
             m_Wrapper.m_FightActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @Weapon1.started += instance.OnWeapon1;
+                @Weapon1.performed += instance.OnWeapon1;
+                @Weapon1.canceled += instance.OnWeapon1;
+                @Weapon2.started += instance.OnWeapon2;
+                @Weapon2.performed += instance.OnWeapon2;
+                @Weapon2.canceled += instance.OnWeapon2;
+                @Direction.started += instance.OnDirection;
+                @Direction.performed += instance.OnDirection;
+                @Direction.canceled += instance.OnDirection;
             }
         }
     }
@@ -440,6 +485,8 @@ public class @Controls : IInputActionCollection, IDisposable
     }
     public interface IFightActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnWeapon1(InputAction.CallbackContext context);
+        void OnWeapon2(InputAction.CallbackContext context);
+        void OnDirection(InputAction.CallbackContext context);
     }
 }
