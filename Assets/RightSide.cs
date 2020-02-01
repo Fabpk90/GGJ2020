@@ -19,7 +19,10 @@ public class RightSide : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetBool("Shoot", false);
-        if (Gamepad.current.rightTrigger.isPressed) { animator.SetBool("Shoot", true); }
+
+        if (Gamepad.current.rightTrigger.isPressed)
+        {
+            animator.SetTrigger("Shoot");
+        }
     }
 }
