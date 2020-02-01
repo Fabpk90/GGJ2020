@@ -23,11 +23,17 @@ public class PlayerFight : MonoBehaviour
 
         private new Rigidbody2D rigidbody2D;
 
+        public float movementSpeed;
+        public float jumpHeight;
         private float movement;
+        private bool canJump = true;
+        private bool isJumping;
 
         private void Update()
         {
-                rigidbody2D.velocity = new Vector3(1, 0) * movement;
+                Vector2 velocity = rigidbody2D.velocity;
+                velocity.x =  movement * movementSpeed;
+                rigidbody2D.velocity = velocity;
         }
 
         private void Awake()
@@ -95,6 +101,10 @@ public class PlayerFight : MonoBehaviour
                         
                         Destroy(p.gameObject);
                 }
+                else
+                {
+                        canJump = true;
+                }
         }
 
         public void Trigger(Collider2D other)
@@ -153,5 +163,17 @@ public class PlayerFight : MonoBehaviour
                         PlayerFight fight = this;
                         item.Equip(ref fight);
                 }
+        }
+
+        public void Jump()
+        {
+                print("jump !");
+                if (canJump)
+                {
+                        //is it the right one ?
+                        rigidbody2D.velocity += new Vector2(0, 1 ) * jumpHeight;
+                        canJump = false;
+                }
+                        
         }
 }
