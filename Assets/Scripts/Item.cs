@@ -2,6 +2,12 @@
 
 public abstract class Item : MonoBehaviour
 {
+    public enum EType
+    {
+        Weapon,
+        Armor,
+        Boots
+    }
     [Range(0, 100)]
     public int weight;
     [Range(0, 100)]
@@ -9,7 +15,8 @@ public abstract class Item : MonoBehaviour
 
     public float secondsToPull;
 
-
+    public abstract EType GetItemType();
+    
     public abstract void TakeDamage(ref float amount);
     public abstract void DealDamage(ref float amount);
 

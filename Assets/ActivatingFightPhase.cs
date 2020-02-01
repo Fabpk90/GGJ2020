@@ -12,6 +12,9 @@ public class ActivatingFightPhase : StateMachineBehaviour
        
        GameManager.Instance.player1.input.SwitchCurrentActionMap("Fight");
        GameManager.Instance.player2.input.SwitchCurrentActionMap("Fight");
+
+       GameManager.Instance.player1Fight.GetTheDump(GameManager.Instance.player1.wallet.items);
+       GameManager.Instance.player2Fight.GetTheDump(GameManager.Instance.player2.wallet.items);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

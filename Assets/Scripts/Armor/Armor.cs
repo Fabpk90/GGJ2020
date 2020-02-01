@@ -23,4 +23,9 @@ public abstract class Armor : Item
         {
         
         }
+
+        public override EType GetItemType()
+        {
+                return EType.Armor;
+        }
 }

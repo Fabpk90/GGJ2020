@@ -39,4 +39,9 @@ public abstract class Weapon : Item
         {
                
         }
+
+        public override EType GetItemType()
+        {
+                return EType.Weapon;
+        }
 }

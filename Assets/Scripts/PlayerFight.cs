@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerFight : MonoBehaviour
 {
+        public int playerIndex;
         public Slider healthBar;
         
         public float health;
@@ -32,6 +33,8 @@ public class PlayerFight : MonoBehaviour
         private void Awake()
         {
                 rigidbody2D = robot.GetComponent<Rigidbody2D>();
+                healthBar.maxValue = maxHealth;
+                healthBar.value = health;
         }
 
         public void Move(Vector2 val)
@@ -58,8 +61,95 @@ public class PlayerFight : MonoBehaviour
                         weapon2.Use();
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        public void TakeDamage(float amount)
         {
+                print(amount);
+                health -= amount;
+
+                if (health < 0)
+                        Die();
+                else
+                {
+                        healthBar.value = health;
+                }
+        }
+
+        private void Die()
+        {
+                GameManager.Instance.PlayerDie(playerIndex);
+        }
+
+        public void collision(Collision2D other)
+        {
+                Attack p = other.gameObject.GetComponent<Attack>();
+
+                if (p)
+                {
+                        float damage = p.amount;
+
+                        foreach (Item item in items)
+                        {
+                                item.TakeDamage(ref damage);
+                        }
+                        TakeDamage(damage);
+                        print("collision");
+                }
+        }
+
+        public void trigger(Collider2D other)
+        {
+                Attack p = other.gameObject.GetComponent<Attack>();
+
+                if (p)
+                {
+                        float damage = p.amount;
+
+                        foreach (Item item in items)
+                        {
+                                item.TakeDamage(ref damage);
+                        }
+                        
+                        TakeDamage(damage);
+                        
+                        print("trigger");
+                }
+        }
+
+        public void GetTheDump(List<Item> walletItems)
+        {
+                foreach (Item item in walletItems)
+                {
+                        switch (item.GetItemType())
+                        {
+                                case Item.EType.Weapon:
+                                        if (!weapon1)
+                                        {
+                                                weapon1 = item as Weapon;
+                                        }
+                                                
+                                        else
+                                        {
+                                                weapon2 = item as Weapon;
+                                        }
+                                        break;
+                                case Item.EType.Armor:
+                                        armor = item as Armor;
+                                        break;
+                                case Item.EType.Boots:
+                                        print("we don't that sorry");
+                                        break;
+                        }
+
+                        
+                }
                 
+                items.AddRange(walletItems);
+
+                foreach (Item item in walletItems)
+                {
+                        //useless mess
+                        PlayerFight fight = this;
+                        item.Equip(ref fight);
+                }
         }
 }

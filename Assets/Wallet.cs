@@ -41,13 +41,34 @@ public class Wallet : MonoBehaviour
         transform.GetChild(indexSelected).GetComponent<Image>().color = Color.green;
     }
     
-    public void AddToWallet(Item toAdd)
+    public bool AddToWallet(Item toAdd)
     {
+        //TODO: check if the type is not already here (twice for the weapon)
+        int weapon = 0;
+        foreach (Item item1 in items)
+        {
+            if (item1.GetItemType() == toAdd.GetItemType())
+            {
+                if (item1.GetItemType() == Item.EType.Weapon)
+                {
+                    weapon++;
+                    if (weapon > 2)
+                        return false;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        
         toAdd.gameObject.SetActive(false);
         var item = Instantiate(walletPrefab, transform);
         item.GetComponent<Image>().sprite = toAdd.GetComponent<SpriteRenderer>().sprite;
         
         items.Add(toAdd);
+
+        return true;
     }
     
     //TODO: rework this, beware of the ref
