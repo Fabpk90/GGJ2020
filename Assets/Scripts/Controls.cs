@@ -221,6 +221,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb359a8f-00d5-47e1-b240-0f7b8e6d34fb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -300,6 +308,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Direction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9cd1dffa-6b19-4631-86db-38ee4b981cfd"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -319,6 +338,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Fight_Weapon1 = m_Fight.FindAction("Weapon1", throwIfNotFound: true);
         m_Fight_Weapon2 = m_Fight.FindAction("Weapon2", throwIfNotFound: true);
         m_Fight_Direction = m_Fight.FindAction("Direction", throwIfNotFound: true);
+        m_Fight_Jump = m_Fight.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -453,6 +473,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Fight_Weapon1;
     private readonly InputAction m_Fight_Weapon2;
     private readonly InputAction m_Fight_Direction;
+    private readonly InputAction m_Fight_Jump;
     public struct FightActions
     {
         private @Controls m_Wrapper;
@@ -460,6 +481,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Weapon1 => m_Wrapper.m_Fight_Weapon1;
         public InputAction @Weapon2 => m_Wrapper.m_Fight_Weapon2;
         public InputAction @Direction => m_Wrapper.m_Fight_Direction;
+        public InputAction @Jump => m_Wrapper.m_Fight_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Fight; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -478,6 +500,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Direction.started -= m_Wrapper.m_FightActionsCallbackInterface.OnDirection;
                 @Direction.performed -= m_Wrapper.m_FightActionsCallbackInterface.OnDirection;
                 @Direction.canceled -= m_Wrapper.m_FightActionsCallbackInterface.OnDirection;
+                @Jump.started -= m_Wrapper.m_FightActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_FightActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_FightActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_FightActionsCallbackInterface = instance;
             if (instance != null)
@@ -491,6 +516,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Direction.started += instance.OnDirection;
                 @Direction.performed += instance.OnDirection;
                 @Direction.canceled += instance.OnDirection;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -510,5 +538,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnWeapon1(InputAction.CallbackContext context);
         void OnWeapon2(InputAction.CallbackContext context);
         void OnDirection(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }
