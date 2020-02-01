@@ -35,11 +35,14 @@ public class PlayerManager : MonoBehaviour
         
         input.currentActionMap["Direction"].started += OnDirectionWallet;
         input.currentActionMap["Selection"].started += OnSelectionWallet;
+
+        wallet.player = this;
     }
 
     private void OnSelectionWallet(InputAction.CallbackContext obj)
     {
        wallet.RemoveElement();
+       selectedX = selectedY = 0;
     }
 
     private void OnDirectionWallet(InputAction.CallbackContext obj)
@@ -50,27 +53,14 @@ public class PlayerManager : MonoBehaviour
         {
             if (playerIndex == 0)
             {
-                selectedX = 0;
-                selectedY = 0;
-
-                wallet.DeSelect();
-                
-                input.SwitchCurrentActionMap("SelectionPart");
-                
-                SearchSelectedItem();
+                GoBackToSelection();
             }
         }
         else if (dir.x < 0)
         {
             if (playerIndex == 1)
             {
-                selectedX = 0;
-                selectedY = 0;
-                wallet.DeSelect();
-                
-                input.SwitchCurrentActionMap("SelectionPart");
-                
-                SearchSelectedItem();
+                GoBackToSelection();
             }
         }
         
@@ -84,13 +74,25 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void GoBackToSelection()
+    {
+        selectedX = 0;
+        selectedY = 0;
+
+        wallet.DeSelect();
+
+        input.SwitchCurrentActionMap("SelectionPart");
+
+        SearchSelectedItem();
+    }
+
     private void OnSelection(InputAction.CallbackContext obj)
     {
         if (!GameManager.Instance.choosingPhase.activeSelf 
             || cooldownPick > Time.time)
             return;
 
-        if (itemInHand != null)
+        if (itemInHand != null && itemInHand.item.gameObject.activeSelf)
         {
             cooldownPick = itemInHand.item.secondsToPull + Time.time;
             wallet.AddToWallet(itemInHand.item);
@@ -122,8 +124,7 @@ public class PlayerManager : MonoBehaviour
             {
                 selectedX++;
             }
-            //if it's player 2, goes to his wallet
-            if (playerIndex == 1 && wallet.items.Count != 0)
+            else if (playerIndex == 1 && wallet.items.Count != 0)
             {
                 input.SwitchCurrentActionMap("SelectionWallet");
                 wallet.UpdateSelection();
