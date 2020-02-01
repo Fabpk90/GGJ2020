@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 
-public class Item : MonoBehaviour
+public abstract class Item : MonoBehaviour
 {
+    [Range(0, 100)]
+    public int weight;
+    [Range(0, 100)]
+    public float amount;
+
+    public float secondsToPull;
+    
     public GameObject player1Selected;
     public GameObject player2Selected;
-    
-    public Vector2Int uiPosition;
 
     public void DePicked(int playerIndex)
     {
@@ -30,4 +35,10 @@ public class Item : MonoBehaviour
             player2Selected.SetActive(true);
         }
     }
+
+    public abstract void TakeDamage(ref float amount);
+    public abstract void DealDamage(ref float amount);
+
+    public abstract void Equip(ref Robot robot);
+    public abstract void UnEquip(ref Robot robot);
 }

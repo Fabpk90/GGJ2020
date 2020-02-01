@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     public int playerIndex;
     private PlayerInput input;
 
-    public List<Item> selectObjects;
+    public List<UISelector> selectObjects;
 
     public int selectedX, selectedY;
 
@@ -24,7 +24,10 @@ public class PlayerManager : MonoBehaviour
         input.SwitchCurrentActionMap("Selection");
         
         input.currentActionMap["Direction"].started += OnDirection;
-        selectObjects.AddRange(FindObjectsOfType<Item>());
+        selectObjects.AddRange(FindObjectsOfType<UISelector>());
+        
+      itemInHand = FindObjectAt(selectedX, selectedY).GetComponent<Item>();
+      itemInHand.Picked(playerIndex);
     }
 
     private void OnDirection(InputAction.CallbackContext obj)
@@ -61,7 +64,7 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        var searchItem = FindObjectAt(selectedX, selectedY);
+        var searchItem = FindObjectAt(selectedX, selectedY).GetComponent<Item>();
 
         if (itemInHand != null)
         {
@@ -72,13 +75,13 @@ public class PlayerManager : MonoBehaviour
         itemInHand = searchItem;
     }
 
-    Item FindObjectAt(int x, int y)
+    UISelector FindObjectAt(int x, int y)
     {
         Vector2Int position = new Vector2Int(x, y);
 
-        foreach (Item i in selectObjects)
+        foreach (UISelector i in selectObjects)
         {
-            if (i.uiPosition == position)
+            if (i.position == position)
                 return i;
         }
 
