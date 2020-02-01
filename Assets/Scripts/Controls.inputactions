@@ -2,13 +2,21 @@
     "name": "Controls",
     "maps": [
         {
-            "name": "Selection",
+            "name": "SelectionPart",
             "id": "2821cf1c-38ba-425c-8780-6fa25bb8591c",
             "actions": [
                 {
                     "name": "Direction",
                     "type": "Button",
                     "id": "13297a27-0790-4266-be60-8bb3142049c4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Selection",
+                    "type": "Button",
+                    "id": "01725839-7f5e-494f-866b-fa1127dcd323",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -69,6 +77,107 @@
                     "action": "Direction",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0c1e2c43-705f-4cf0-9d1b-209a8c48844a",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Selection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "SelectionWallet",
+            "id": "54830b05-a902-45a6-ac4a-8a817a16cb23",
+            "actions": [
+                {
+                    "name": "Direction",
+                    "type": "Button",
+                    "id": "5c0b6875-1d7c-4912-9d34-5dcdf9bbd4ae",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Selection",
+                    "type": "Button",
+                    "id": "474c30d9-03b2-400e-a873-55055e35b1b7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "DPad",
+                    "id": "047c18b1-b639-42ce-bf4b-13f7e33a2cbb",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Direction",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "956644a3-6644-4c7d-822c-bdca4d51ccc4",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "222f9f39-7d3c-428d-bd76-6b99aa03bbe1",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "535fdd50-09c1-476e-a9ac-a7af26f3568a",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "6b39a8ea-7673-4b5c-8dc8-38f74b098db0",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "1c834a2f-6037-44fa-96c1-dc2300864be5",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Selection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

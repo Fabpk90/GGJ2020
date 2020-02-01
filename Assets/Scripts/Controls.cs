@@ -15,13 +15,21 @@ public class @Controls : IInputActionCollection, IDisposable
     ""name"": ""Controls"",
     ""maps"": [
         {
-            ""name"": ""Selection"",
+            ""name"": ""SelectionPart"",
             ""id"": ""2821cf1c-38ba-425c-8780-6fa25bb8591c"",
             ""actions"": [
                 {
                     ""name"": ""Direction"",
                     ""type"": ""Button"",
                     ""id"": ""13297a27-0790-4266-be60-8bb3142049c4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Selection"",
+                    ""type"": ""Button"",
+                    ""id"": ""01725839-7f5e-494f-866b-fa1127dcd323"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -82,6 +90,107 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Direction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c1e2c43-705f-4cf0-9d1b-209a8c48844a"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Selection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""SelectionWallet"",
+            ""id"": ""54830b05-a902-45a6-ac4a-8a817a16cb23"",
+            ""actions"": [
+                {
+                    ""name"": ""Direction"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c0b6875-1d7c-4912-9d34-5dcdf9bbd4ae"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Selection"",
+                    ""type"": ""Button"",
+                    ""id"": ""474c30d9-03b2-400e-a873-55055e35b1b7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""DPad"",
+                    ""id"": ""047c18b1-b639-42ce-bf4b-13f7e33a2cbb"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Direction"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""956644a3-6644-4c7d-822c-bdca4d51ccc4"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Direction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""222f9f39-7d3c-428d-bd76-6b99aa03bbe1"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Direction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""535fdd50-09c1-476e-a9ac-a7af26f3568a"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Direction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""6b39a8ea-7673-4b5c-8dc8-38f74b098db0"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Direction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c834a2f-6037-44fa-96c1-dc2300864be5"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Selection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -148,9 +257,14 @@ public class @Controls : IInputActionCollection, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Selection
-        m_Selection = asset.FindActionMap("Selection", throwIfNotFound: true);
-        m_Selection_Direction = m_Selection.FindAction("Direction", throwIfNotFound: true);
+        // SelectionPart
+        m_SelectionPart = asset.FindActionMap("SelectionPart", throwIfNotFound: true);
+        m_SelectionPart_Direction = m_SelectionPart.FindAction("Direction", throwIfNotFound: true);
+        m_SelectionPart_Selection = m_SelectionPart.FindAction("Selection", throwIfNotFound: true);
+        // SelectionWallet
+        m_SelectionWallet = asset.FindActionMap("SelectionWallet", throwIfNotFound: true);
+        m_SelectionWallet_Direction = m_SelectionWallet.FindAction("Direction", throwIfNotFound: true);
+        m_SelectionWallet_Selection = m_SelectionWallet.FindAction("Selection", throwIfNotFound: true);
         // Fight
         m_Fight = asset.FindActionMap("Fight", throwIfNotFound: true);
         m_Fight_Newaction = m_Fight.FindAction("New action", throwIfNotFound: true);
@@ -200,38 +314,87 @@ public class @Controls : IInputActionCollection, IDisposable
         asset.Disable();
     }
 
-    // Selection
-    private readonly InputActionMap m_Selection;
-    private ISelectionActions m_SelectionActionsCallbackInterface;
-    private readonly InputAction m_Selection_Direction;
-    public struct SelectionActions
+    // SelectionPart
+    private readonly InputActionMap m_SelectionPart;
+    private ISelectionPartActions m_SelectionPartActionsCallbackInterface;
+    private readonly InputAction m_SelectionPart_Direction;
+    private readonly InputAction m_SelectionPart_Selection;
+    public struct SelectionPartActions
     {
         private @Controls m_Wrapper;
-        public SelectionActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Direction => m_Wrapper.m_Selection_Direction;
-        public InputActionMap Get() { return m_Wrapper.m_Selection; }
+        public SelectionPartActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Direction => m_Wrapper.m_SelectionPart_Direction;
+        public InputAction @Selection => m_Wrapper.m_SelectionPart_Selection;
+        public InputActionMap Get() { return m_Wrapper.m_SelectionPart; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(SelectionActions set) { return set.Get(); }
-        public void SetCallbacks(ISelectionActions instance)
+        public static implicit operator InputActionMap(SelectionPartActions set) { return set.Get(); }
+        public void SetCallbacks(ISelectionPartActions instance)
         {
-            if (m_Wrapper.m_SelectionActionsCallbackInterface != null)
+            if (m_Wrapper.m_SelectionPartActionsCallbackInterface != null)
             {
-                @Direction.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnDirection;
-                @Direction.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnDirection;
-                @Direction.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnDirection;
+                @Direction.started -= m_Wrapper.m_SelectionPartActionsCallbackInterface.OnDirection;
+                @Direction.performed -= m_Wrapper.m_SelectionPartActionsCallbackInterface.OnDirection;
+                @Direction.canceled -= m_Wrapper.m_SelectionPartActionsCallbackInterface.OnDirection;
+                @Selection.started -= m_Wrapper.m_SelectionPartActionsCallbackInterface.OnSelection;
+                @Selection.performed -= m_Wrapper.m_SelectionPartActionsCallbackInterface.OnSelection;
+                @Selection.canceled -= m_Wrapper.m_SelectionPartActionsCallbackInterface.OnSelection;
             }
-            m_Wrapper.m_SelectionActionsCallbackInterface = instance;
+            m_Wrapper.m_SelectionPartActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Direction.started += instance.OnDirection;
                 @Direction.performed += instance.OnDirection;
                 @Direction.canceled += instance.OnDirection;
+                @Selection.started += instance.OnSelection;
+                @Selection.performed += instance.OnSelection;
+                @Selection.canceled += instance.OnSelection;
             }
         }
     }
-    public SelectionActions @Selection => new SelectionActions(this);
+    public SelectionPartActions @SelectionPart => new SelectionPartActions(this);
+
+    // SelectionWallet
+    private readonly InputActionMap m_SelectionWallet;
+    private ISelectionWalletActions m_SelectionWalletActionsCallbackInterface;
+    private readonly InputAction m_SelectionWallet_Direction;
+    private readonly InputAction m_SelectionWallet_Selection;
+    public struct SelectionWalletActions
+    {
+        private @Controls m_Wrapper;
+        public SelectionWalletActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Direction => m_Wrapper.m_SelectionWallet_Direction;
+        public InputAction @Selection => m_Wrapper.m_SelectionWallet_Selection;
+        public InputActionMap Get() { return m_Wrapper.m_SelectionWallet; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SelectionWalletActions set) { return set.Get(); }
+        public void SetCallbacks(ISelectionWalletActions instance)
+        {
+            if (m_Wrapper.m_SelectionWalletActionsCallbackInterface != null)
+            {
+                @Direction.started -= m_Wrapper.m_SelectionWalletActionsCallbackInterface.OnDirection;
+                @Direction.performed -= m_Wrapper.m_SelectionWalletActionsCallbackInterface.OnDirection;
+                @Direction.canceled -= m_Wrapper.m_SelectionWalletActionsCallbackInterface.OnDirection;
+                @Selection.started -= m_Wrapper.m_SelectionWalletActionsCallbackInterface.OnSelection;
+                @Selection.performed -= m_Wrapper.m_SelectionWalletActionsCallbackInterface.OnSelection;
+                @Selection.canceled -= m_Wrapper.m_SelectionWalletActionsCallbackInterface.OnSelection;
+            }
+            m_Wrapper.m_SelectionWalletActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Direction.started += instance.OnDirection;
+                @Direction.performed += instance.OnDirection;
+                @Direction.canceled += instance.OnDirection;
+                @Selection.started += instance.OnSelection;
+                @Selection.performed += instance.OnSelection;
+                @Selection.canceled += instance.OnSelection;
+            }
+        }
+    }
+    public SelectionWalletActions @SelectionWallet => new SelectionWalletActions(this);
 
     // Fight
     private readonly InputActionMap m_Fight;
@@ -265,9 +428,15 @@ public class @Controls : IInputActionCollection, IDisposable
         }
     }
     public FightActions @Fight => new FightActions(this);
-    public interface ISelectionActions
+    public interface ISelectionPartActions
     {
         void OnDirection(InputAction.CallbackContext context);
+        void OnSelection(InputAction.CallbackContext context);
+    }
+    public interface ISelectionWalletActions
+    {
+        void OnDirection(InputAction.CallbackContext context);
+        void OnSelection(InputAction.CallbackContext context);
     }
     public interface IFightActions
     {
