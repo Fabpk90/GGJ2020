@@ -8,7 +8,7 @@ public class TestWeapon : Weapon
     public GameObject bulletPrefab;
     public float bulletSpeed;
 
-    private PlayerFight fighter;
+    public PlayerFight fighter;
     public override void Equip(ref PlayerFight robot)
     {
         fighter = robot;

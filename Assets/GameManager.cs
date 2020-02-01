@@ -101,7 +101,6 @@ public class GameManager : MonoBehaviour
                 animator.SetTrigger(FightPhase);
                 isSelectingRound = false;
             }
-                
         }
 
         if (endGame)
