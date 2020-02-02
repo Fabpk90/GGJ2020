@@ -8,7 +8,10 @@ public class Robot : MonoBehaviour
     public PlayerFight player;
 
     public Animator weapon1;
+    public SpriteRenderer weapon1Sprite;
+    
     public Animator weapon2;
+    public SpriteRenderer weapon2Sprite;
 
     public bool isBigBoi;
     private static readonly int BigBoi = Animator.StringToHash("BigBoi");
