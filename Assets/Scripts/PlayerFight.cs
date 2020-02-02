@@ -46,7 +46,7 @@ public class PlayerFight : MonoBehaviour
                 rigidbody2D = robot.GetComponent<Rigidbody2D>();
                 robot.GetComponent<Robot>().isBigBoi = playerIndex == 0;
                 healthBar.maxValue = maxHealth;
-                healthBar.value = health;
+                healthBar.value = maxHealth - health;
         }
 
         public void Move(Vector2 val)
@@ -74,19 +74,18 @@ public class PlayerFight : MonoBehaviour
         public void UseWeapon1()
         {
                 if(weapon1 != null)
-                        weapon1.Use();
+                        robot.GetComponent<Robot>().weapon1
+                                .SetBool(weapon1.GetWeaponType() == Weapon.EWeaponType.Ranged ? Shot : Melee,
+                                        weapon1.Use());
         }
 
         public void UseWeapon2()
         {
                 if (weapon2 != null)
                 {
-                        if(weapon2.GetWeaponType() == Weapon.EWeaponType.Ranged)
-                                robot.GetComponent<Robot>().weapon2.SetBool(Shot, weapon2.Use());
-                        else
-                        {
-                                robot.GetComponent<Robot>().weapon2.SetBool(Melee, weapon2.Use());
-                        }
+                        robot.GetComponent<Robot>().weapon2
+                                .SetBool(weapon2.GetWeaponType() == Weapon.EWeaponType.Ranged ? Shot : Melee,
+                                        weapon2.Use());
                 }
                         
         }
@@ -94,13 +93,9 @@ public class PlayerFight : MonoBehaviour
         public void TakeDamage(float amount)
         {
                 health -= amount;
-
+                healthBar.value = maxHealth - health;
                 if (health < 0)
                         Die();
-                else
-                {
-                        healthBar.value = health;
-                }
         }
 
         private void Die()
@@ -168,9 +163,8 @@ public class PlayerFight : MonoBehaviour
                                         else
                                         {
                                                 weapon2 = item as Weapon;
-                                                //TODO: enable that when the left side is done
-                                                // robot.GetComponent<Robot>().weapon2Sprite.sprite =
-                                                //         weapon2.GetComponent<SpriteRenderer>().sprite;
+                                                robot.GetComponent<Robot>().weapon2Sprite.sprite =
+                                                         weapon2.GetComponent<SpriteRenderer>().sprite;
                                         }
                                         break;
                                 case Item.EType.Armor:

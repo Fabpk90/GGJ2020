@@ -8,7 +8,8 @@ public class ActivateChoosingPhase : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         GameManager.Instance.choosingPhase.SetActive(true);
-        
+        GameManager.Instance.startingScreen.SetActive(false);
+
         GameManager.Instance.player1.input.SwitchCurrentActionMap("SelectionPart");
         GameManager.Instance.player2.input.SwitchCurrentActionMap("SelectionPart");
         
