@@ -77,21 +77,37 @@ public class PlayerFight : MonoBehaviour
 
         public void UseWeapon1()
         {
-                if(weapon1 != null)
-                        robot.GetComponent<Robot>().weapon1
-                                .SetBool(weapon1.GetWeaponType() == Weapon.EWeaponType.Ranged ? Shot : Melee,
-                                        weapon1.Use());
+                if (weapon1 != null)
+                {
+                        if (weapon1.Use())
+                        {
+                                robot.GetComponent<Robot>().weapon1
+                                        .SetTrigger(weapon1.GetWeaponType() == Weapon.EWeaponType.Ranged ? Shot : Melee);
+                                robot.GetComponent<Robot>().arm1
+                                        .SetTrigger("Shoot");
+                        }
+                        
+                       
+                }
+                        
         }
 
         public void UseWeapon2()
         {
                 if (weapon2 != null)
                 {
-                        robot.GetComponent<Robot>().weapon2
-                                .SetBool(weapon2.GetWeaponType() == Weapon.EWeaponType.Ranged ? Shot : Melee,
-                                        weapon2.Use());
+                        if (weapon2.Use())
+                        {
+                                robot.GetComponent<Robot>().weapon2
+                                        .SetTrigger(weapon2.GetWeaponType() == Weapon.EWeaponType.Ranged
+                                                ? Shot
+                                                : Melee);
+                                robot.GetComponent<Robot>().arm2
+                                        .SetTrigger("Shoot");
+                        }
                 }
-                        
+
+
         }
 
         public void TakeDamage(float amount)

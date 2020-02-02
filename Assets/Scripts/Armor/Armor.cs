@@ -6,7 +6,7 @@ public abstract class Armor : Item
 
         public override void TakeDamage(ref float damageAmount)
         {
-                damageAmount -= (damageAmount * amount);
+                damageAmount -= (damageAmount * (amount / 100));
         }
 
         public override void DealDamage(ref float amount)

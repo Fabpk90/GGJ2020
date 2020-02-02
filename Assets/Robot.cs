@@ -9,20 +9,16 @@ public class Robot : MonoBehaviour
 
     public Animator legAnimator;
 
+    public Animator arm1;
     public Animator weapon1;
     public SpriteRenderer weapon1Sprite;
-    
+
+    public Animator arm2;
     public Animator weapon2;
     public SpriteRenderer weapon2Sprite;
 
     public bool isBigBoi;
     private static readonly int BigBoi = Animator.StringToHash("BigBoi");
-
-    private void Start()
-    {
-        //weapon1.SetBool(BigBoi, isBigBoi);
-        weapon2.SetBool(BigBoi, isBigBoi);
-    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
