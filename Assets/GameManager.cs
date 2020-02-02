@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
     
     private static readonly int FightPhase = Animator.StringToHash("FightPhase");
 
+    public GameObject startingScreen;
+
     // Start is called before the first frame update
     void Start()
     {
