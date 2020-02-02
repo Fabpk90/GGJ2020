@@ -32,6 +32,7 @@ public class PlayerFight : MonoBehaviour
         private static readonly int BigBoi = Animator.StringToHash("BigBoi");
         private static readonly int Shot = Animator.StringToHash("Shot");
         private static readonly int Melee = Animator.StringToHash("Melee");
+        private static readonly int Walking = Animator.StringToHash("Walking");
 
         private void Update()
         {
@@ -51,13 +52,23 @@ public class PlayerFight : MonoBehaviour
         public void Move(Vector2 val)
         {
                 if (val.x > 0)
+                {
                         movement = 1;
+                        robot.GetComponent<Robot>().legAnimator.SetBool(Walking, true);
+                }
+                        
                 else if (val.x < 0)
+                {
                         movement = -1;
+                        robot.GetComponent<Robot>().legAnimator.SetBool(Walking, true);
+                }
+                       
                 else
                 {
                         movement = 0;
+                        robot.GetComponent<Robot>().legAnimator.SetBool(Walking, false);
                 }
+                
         }
 
         public void UseWeapon1()

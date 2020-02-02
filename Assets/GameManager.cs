@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
     public void PlayerDie(int player)
     {
         playerDead.SetActive(true);
-        playerDead.GetComponent<TextMeshProUGUI>().text = "Player " + (player + 1) + " is dead";
+        playerDead.GetComponent<TextMeshProUGUI>().text = "Player " + (player + 1) + " is ded Press A or X to restart";
         endGame = true;
     }
 }

@@ -7,6 +7,8 @@ public class Robot : MonoBehaviour
 {
     public PlayerFight player;
 
+    public Animator legAnimator;
+
     public Animator weapon1;
     public SpriteRenderer weapon1Sprite;
     

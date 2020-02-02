@@ -44,7 +44,7 @@ Animator:
   m_GameObject: {fileID: 912139918}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7d855fb3ed0babe4a838e7bf32f8224c, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -272,6 +272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1962596562}
   - component: {fileID: 1962596563}
+  - component: {fileID: 348175863109381822}
   m_Layer: 0
   m_Name: Legs
   m_TagString: Untagged
@@ -343,6 +344,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &348175863109381822
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962596561}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d385daa585ad3104d8ac6f70be9bfbef, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2131100693
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,6 +514,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  weapon1: {fileID: 0}
+  weapon1Sprite: {fileID: 0}
+  weapon2: {fileID: 0}
+  weapon2Sprite: {fileID: 0}
+  isBigBoi: 0
 --- !u!61 &711349729734163603
 BoxCollider2D:
   m_ObjectHideFlags: 0
