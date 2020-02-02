@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +30,8 @@ public class PlayerFight : MonoBehaviour
         private bool canJump = true;
         private bool isJumping;
         private static readonly int BigBoi = Animator.StringToHash("BigBoi");
+        private static readonly int Shot = Animator.StringToHash("Shot");
+        private static readonly int Melee = Animator.StringToHash("Melee");
 
         private void Update()
         {
@@ -67,7 +70,12 @@ public class PlayerFight : MonoBehaviour
         {
                 if (weapon2 != null)
                 {
-                        robot.GetComponent<Robot>().weapon2.SetBool("Shot", weapon2.Use());
+                        if(weapon2.GetWeaponType() == Weapon.EWeaponType.Ranged)
+                                robot.GetComponent<Robot>().weapon2.SetBool(Shot, weapon2.Use());
+                        else
+                        {
+                                robot.GetComponent<Robot>().weapon2.SetBool(Melee, weapon2.Use());
+                        }
                 }
                         
         }
@@ -142,11 +150,16 @@ public class PlayerFight : MonoBehaviour
                                         if (!weapon1)
                                         {
                                                 weapon1 = item as Weapon;
+                                                robot.GetComponent<Robot>().weapon1Sprite.sprite =
+                                                        weapon1.GetComponent<SpriteRenderer>().sprite;
                                         }
                                                 
                                         else
                                         {
                                                 weapon2 = item as Weapon;
+                                                //TODO: enable that when the left side is done
+                                                // robot.GetComponent<Robot>().weapon2Sprite.sprite =
+                                                //         weapon2.GetComponent<SpriteRenderer>().sprite;
                                         }
                                         break;
                                 case Item.EType.Armor:

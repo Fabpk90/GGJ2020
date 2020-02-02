@@ -3,10 +3,22 @@ using UnityEngine;
 
 public abstract class Weapon : Item
 {
+        public enum EWeaponType
+        {
+                Melee,
+                Ranged
+        }
+        
+        
         public float useCooldown;
         protected float cooldown;
 
-        public abstract void UseWeapon();
+        public PlayerFight fighter;
+
+        protected virtual void UseWeapon()
+        {
+                
+        }
 
         private void Update()
         { 
@@ -35,7 +47,7 @@ public abstract class Weapon : Item
         
         public override void Equip(ref PlayerFight robot)
         {
-                
+                fighter = robot;
         }
 
         public override void UnEquip(ref PlayerFight robot)
@@ -47,4 +59,6 @@ public abstract class Weapon : Item
         {
                 return EType.Weapon;
         }
+
+        public abstract EWeaponType GetWeaponType();
 }

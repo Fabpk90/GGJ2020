@@ -826,6 +826,12 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 8268432372499407860}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &394155895 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1751949349, guid: a2cd94a9f88378b43854ac2a06aa4bde,
+    type: 3}
+  m_PrefabInstance: {fileID: 8268432372499407860}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &400998412 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8268432372761633784, guid: a2cd94a9f88378b43854ac2a06aa4bde,
@@ -1921,6 +1927,12 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 1785863322}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &1003641052 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1751949349, guid: a2cd94a9f88378b43854ac2a06aa4bde,
+    type: 3}
+  m_PrefabInstance: {fileID: 1785863322}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1023557491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2846,6 +2858,11 @@ PrefabInstance:
       propertyPath: weapon2
       value: 
       objectReference: {fileID: 1003641051}
+    - target: {fileID: 7796495686017492591, guid: a2cd94a9f88378b43854ac2a06aa4bde,
+        type: 3}
+      propertyPath: weapon2Sprite
+      value: 
+      objectReference: {fileID: 1003641052}
     - target: {fileID: 8268432372761633784, guid: a2cd94a9f88378b43854ac2a06aa4bde,
         type: 3}
       propertyPath: m_Name
@@ -3642,6 +3659,11 @@ PrefabInstance:
       propertyPath: weapon2
       value: 
       objectReference: {fileID: 394155894}
+    - target: {fileID: 7796495686017492591, guid: a2cd94a9f88378b43854ac2a06aa4bde,
+        type: 3}
+      propertyPath: weapon2Sprite
+      value: 
+      objectReference: {fileID: 394155895}
     - target: {fileID: 8268432372761633784, guid: a2cd94a9f88378b43854ac2a06aa4bde,
         type: 3}
       propertyPath: m_Name
