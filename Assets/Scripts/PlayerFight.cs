@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayerFight : MonoBehaviour
 {
@@ -33,6 +35,8 @@ public class PlayerFight : MonoBehaviour
         private static readonly int Shot = Animator.StringToHash("Shot");
         private static readonly int Melee = Animator.StringToHash("Melee");
         private static readonly int Walking = Animator.StringToHash("Walking");
+
+        [FormerlySerializedAs("damageHit")] public AudioClip[] damageHitSounds;
 
         private void Update()
         {
@@ -94,6 +98,10 @@ public class PlayerFight : MonoBehaviour
         {
                 health -= amount;
                 healthBar.value = maxHealth - health;
+
+                AudioSource.PlayClipAtPoint(damageHitSounds[Random.Range(0, damageHitSounds.Length)],
+                        robot.transform.position);
+                
                 if (health < 0)
                         Die();
         }
@@ -107,7 +115,7 @@ public class PlayerFight : MonoBehaviour
         {
                 Attack p = other.gameObject.GetComponent<Attack>();
 
-                if (p)
+                if (p && p.playerIndex != playerIndex)
                 {
                         float damage = p.amount;
 
@@ -130,7 +138,7 @@ public class PlayerFight : MonoBehaviour
         {
                 Attack p = other.gameObject.GetComponent<Attack>();
 
-                if (p)
+                if (p && p.playerIndex != playerIndex)
                 {
                         float damage = p.amount;
 

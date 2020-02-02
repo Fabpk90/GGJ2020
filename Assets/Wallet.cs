@@ -51,8 +51,9 @@ public class Wallet : MonoBehaviour
             {
                 if (item1.GetItemType() == Item.EType.Weapon)
                 {
+                    print("weapon ehehe");
                     weapon++;
-                    if (weapon > 2)
+                    if (weapon >= 2)
                         return false;
                 }
                 else

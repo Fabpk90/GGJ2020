@@ -81,8 +81,8 @@ MonoBehaviour:
   selectObjects: []
   selectedX: 0
   selectedY: 0
-  maxIndexUI: {x: 1, y: 1}
-  minIndexUI: {x: -1, y: -1}
+  maxIndexUI: {x: 2, y: 2}
+  minIndexUI: {x: -2, y: -2}
   itemInHand: {fileID: 0}
   cooldownPick: 0
   wallet: {fileID: 0}
@@ -111,3 +111,7 @@ MonoBehaviour:
   items: []
   movementSpeed: 5
   jumpHeight: 10
+  damageHit:
+  - {fileID: 8300000, guid: 942693bd112813849ac6aa8ac73c085f, type: 3}
+  - {fileID: 8300000, guid: 29d62ce6d5c0d414cb87429b137d6b17, type: 3}
+  - {fileID: 8300000, guid: f465cdd30e2da1843b2dd9bb02864f3f, type: 3}

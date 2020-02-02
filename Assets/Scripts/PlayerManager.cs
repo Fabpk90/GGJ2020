@@ -123,7 +123,7 @@ public class PlayerManager : MonoBehaviour
             || cooldownPick > Time.time)
             return;
 
-        if (itemInHand != null && itemInHand.item.gameObject.activeSelf
+        if (itemInHand != null && itemInHand.item != null && itemInHand.item.gameObject.activeSelf
             && !(selectedX == 0 && selectedY == 0))
         {
             cooldownPick = itemInHand.item.secondsToPull + Time.time;
@@ -155,6 +155,8 @@ public class PlayerManager : MonoBehaviour
             if (selectedX + 1 <= maxIndexUI.x)
             {
                 selectedX++;
+                if (!SearchSelectedItem())
+                    selectedX--;
             }
             else if (playerIndex == 1 && wallet.items.Count != 0)
             {
@@ -167,6 +169,8 @@ public class PlayerManager : MonoBehaviour
             if (selectedX - 1 >= minIndexUI.x)
             {
                 selectedX--;
+                if (!SearchSelectedItem())
+                    selectedX++;
             }
             else
             {
@@ -184,6 +188,8 @@ public class PlayerManager : MonoBehaviour
             if (selectedY + 1 <= maxIndexUI.y)
             {
                 selectedY++;
+                if (!SearchSelectedItem())
+                    selectedY--;
             }
         }
         else if (dir.y < 0)
@@ -191,23 +197,33 @@ public class PlayerManager : MonoBehaviour
             if (selectedY - 1 >= minIndexUI.y)
             {
                 selectedY--;
+                if (!SearchSelectedItem())
+                    selectedY++;
             }
         }
 
-        SearchSelectedItem();
+       
     }
 
-    private void SearchSelectedItem()
+    private bool SearchSelectedItem()
     {
         var searchItem = FindObjectAt(selectedX, selectedY);
 
-        if (itemInHand != null)
+        if (searchItem)
         {
-            itemInHand.DePicked(playerIndex);
+            if (itemInHand != null)
+            {
+                itemInHand.DePicked(playerIndex);
+            }
+
+            searchItem.Picked(playerIndex);
+            itemInHand = searchItem;
+
+            return true;
         }
 
-        searchItem.Picked(playerIndex);
-        itemInHand = searchItem;
+        return false;
+
     }
 
     UISelector FindObjectAt(int x, int y)
