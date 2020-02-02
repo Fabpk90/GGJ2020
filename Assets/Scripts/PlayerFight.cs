@@ -46,7 +46,7 @@ public class PlayerFight : MonoBehaviour
                 rigidbody2D = robot.GetComponent<Rigidbody2D>();
                 robot.GetComponent<Robot>().isBigBoi = playerIndex == 0;
                 healthBar.maxValue = maxHealth;
-                healthBar.value = health;
+                healthBar.value =maxHealth - health;
         }
 
         public void Move(Vector2 val)
@@ -81,12 +81,9 @@ public class PlayerFight : MonoBehaviour
         {
                 if (weapon2 != null)
                 {
-                        if(weapon2.GetWeaponType() == Weapon.EWeaponType.Ranged)
-                                robot.GetComponent<Robot>().weapon2.SetBool(Shot, weapon2.Use());
-                        else
-                        {
-                                robot.GetComponent<Robot>().weapon2.SetBool(Melee, weapon2.Use());
-                        }
+                        robot.GetComponent<Robot>().weapon2
+                                .SetBool(weapon2.GetWeaponType() == Weapon.EWeaponType.Ranged ? Shot : Melee,
+                                        weapon2.Use());
                 }
                         
         }
@@ -94,13 +91,9 @@ public class PlayerFight : MonoBehaviour
         public void TakeDamage(float amount)
         {
                 health -= amount;
-
+                healthBar.value = maxHealth - health;
                 if (health < 0)
                         Die();
-                else
-                {
-                        healthBar.value = health;
-                }
         }
 
         private void Die()

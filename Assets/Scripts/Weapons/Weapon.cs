@@ -15,10 +15,7 @@ public abstract class Weapon : Item
 
         public PlayerFight fighter;
 
-        protected virtual void UseWeapon()
-        {
-                
-        }
+        protected abstract void UseWeapon();
 
         private void Update()
         { 
