@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RightSide : MonoBehaviour
+public class LeftSide : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -20,7 +20,7 @@ public class RightSide : MonoBehaviour
     void Update()
     {
         animator.SetBool("Shoot", false);
-        if (Gamepad.current.rightTrigger.isPressed)
+        if (Gamepad.current.leftTrigger.isPressed)
         {
             animator.SetBool("Shoot", true);
         }

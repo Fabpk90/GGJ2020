@@ -15,7 +15,7 @@ public class WeaponScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Gamepad.current.rightTrigger.isPressed) { animator.SetBool("Load", true); }
-        if (!Gamepad.current.rightTrigger.isPressed) { animator.SetBool("Load", false); }
+        //if (Gamepad.current.rightTrigger.isPressed) { animator.SetBool("Load", true); }
+        //if (!Gamepad.current.rightTrigger.isPressed) { animator.SetBool("Load", false); }
     }
 }
