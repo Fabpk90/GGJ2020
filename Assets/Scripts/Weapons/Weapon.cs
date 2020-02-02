@@ -13,13 +13,16 @@ public abstract class Weapon : Item
                 cooldown += Time.deltaTime;
         }
 
-        public void Use()
+        public bool Use()
         {
                 if (cooldown >= useCooldown)
                 {
                         cooldown = 0;
                         UseWeapon();
+                        return true;
                 }
+
+                return false;
         }
 
         public override void TakeDamage(ref float amount)

@@ -28,6 +28,7 @@ public class PlayerFight : MonoBehaviour
         private float movement;
         private bool canJump = true;
         private bool isJumping;
+        private static readonly int BigBoi = Animator.StringToHash("BigBoi");
 
         private void Update()
         {
@@ -39,6 +40,7 @@ public class PlayerFight : MonoBehaviour
         private void Awake()
         {
                 rigidbody2D = robot.GetComponent<Rigidbody2D>();
+                robot.GetComponent<Robot>().isBigBoi = playerIndex == 0;
                 healthBar.maxValue = maxHealth;
                 healthBar.value = health;
         }
@@ -63,8 +65,11 @@ public class PlayerFight : MonoBehaviour
 
         public void UseWeapon2()
         {
-                if (weapon2 != null) 
-                        weapon2.Use();
+                if (weapon2 != null)
+                {
+                        robot.GetComponent<Robot>().weapon2.SetBool("Shot", weapon2.Use());
+                }
+                        
         }
 
         public void TakeDamage(float amount)
